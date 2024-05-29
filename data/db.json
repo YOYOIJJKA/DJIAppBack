@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "email": "new@mail.com",
+      "password": "asd",
+      "id": 0
+    }
+  ],
+  "userProgress": [
+    {
+      "id": 0,
+      "currentPage": null,
+      "currentAnimationName": null,
+      "correctAnswers": null
+    }
+  ]
+}
