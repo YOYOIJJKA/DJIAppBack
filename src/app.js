@@ -4,11 +4,11 @@ const cors = require('cors');
 const fs = require('fs');
 const app = express();
 const port = 3000;
+const dbFilePath = './data/db.json';
 
 app.use(bodyParser.json());
 app.use(cors()); 
 
-const dbFilePath = './data/db.json';
 
 function readDatabase() {
   const data = fs.readFileSync(dbFilePath);
@@ -32,12 +32,12 @@ app.post('/users', (req, res) => {
   res.json(newUser);
 });
 
-app.patch('/userProgress/:userId', (req, res) => {
+app.patch('/userProgress/:id', (req, res) => {
   const db = readDatabase();
-  const userId = parseInt(req.params.userId);
+  const id = parseInt(req.params.id);
   const userProgress = req.body;
 
-  const userIndex = db.userProgress.findIndex(up => up.userId === userId);
+  const userIndex = db.userProgress.findIndex(up => up.id === id);
 
   if (userIndex !== -1) {
     db.userProgress[userIndex] = { ...db.userProgress[userIndex], ...userProgress };
@@ -56,10 +56,10 @@ app.post('/userProgress', (req, res) => {
   res.json(newUserProgress);
 });
 
-app.get('/userProgress/:userId', (req, res) => {
+app.get('/userProgress/:id', (req, res) => {
   const db = readDatabase();
-  const userId = parseInt(req.params.userId);
-  const userProgress = db.userProgress.find(up => up.userId === userId);
+  const id = parseInt(req.params.id);
+  const userProgress = db.userProgress.find(up => up.id === id);
 
   if (userProgress) {
     res.json(userProgress);
