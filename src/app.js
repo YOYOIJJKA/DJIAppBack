@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 const app = express();
-const port = 3000;
+const port = 80;
 const dbFilePath = './data/db.json';
 
 app.use(bodyParser.json());
